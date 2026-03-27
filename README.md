@@ -32,12 +32,12 @@ This project simulates a real-world fraud detection system that:
 
 ```mermaid
 flowchart LR
-A[Raw Input] --> B[Feature Engineering]
-B --> C[Preprocessing]
-C --> D[Model (Random Forest)]
-D --> E[Probability Output]
-E --> F[Risk Classification]
-F --> G[Insights & Recommendation]
+    A[Raw Input] --> B[Feature Engineering]
+    B --> C[Preprocessing]
+    C --> D[Model - Random Forest]
+    D --> E[Probability Output]
+    E --> F[Risk Classification]
+    F --> G[Insights and Recommendation]
 ```
 
 ### ✨ Feature Engineering
@@ -169,7 +169,7 @@ Dataset source:
 
 ## ⚠️ Disclaimer
 
-This project is a prototype. Predictions are probabilistic and should support—not replace—human decision-making.
+This project is a prototype. Predictions are probabilistic and intended to assist, not replace, human decision-making.
 
 ---
 
