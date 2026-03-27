@@ -1,34 +1,83 @@
 # 🛡️ Fraud Detection System
 
-Sistem Machine Learning untuk mendeteksi potensi transaksi fraud secara real-time menggunakan model klasifikasi dan antarmuka interaktif berbasis Streamlit.
+> 🚀 Production-style fraud detection system with ML pipeline, real-time inference, explainable risk scoring, and interactive Streamlit UI.
 
 ---
 
-## 📌 Overview
 
-Project ini bertujuan untuk:
+## 🧩 Problem Statement
 
-* Mengidentifikasi transaksi mencurigakan (fraud)
-* Memberikan **probabilitas risiko**
-* Menyediakan **insight tambahan** seperti:
+Financial fraud causes significant losses and requires fast, reliable detection.
+This project simulates a real-world fraud detection pipeline that:
 
-  * Risk level (Rendah → Sangat Tinggi)
-  * Pola mencurigakan (flags)
-  * Rekomendasi tindakan
-
-Aplikasi dilengkapi dengan UI interaktif sehingga user dapat langsung melakukan simulasi transaksi.
+* Detects suspicious transactions in **real-time**
+* Outputs **probability-based risk scores**
+* Provides **interpretable insights & recommendations**
 
 ---
 
-## 🚀 Features
+## 🏆 Key Features
 
-* 🔍 Prediksi fraud secara real-time
-* 📊 Probabilitas fraud dengan visual progress bar
-* ⚠️ Deteksi pola mencurigakan (rule-based flags)
-* 🧠 Risk classification (Low, Medium, High)
-* 💡 Rekomendasi tindakan berdasarkan hasil prediksi
-* 🧪 Automated testing menggunakan pytest
-* 🎯 Feature engineering custom (`BalanceDiffTransformer`)
+* 🔍 Real-time prediction
+* 📊 Fraud probability scoring
+* ⚠️ Rule-based anomaly flags
+* 🧠 Risk classification (Low → Critical)
+* 💡 Actionable recommendations
+* 🧪 Automated testing (pytest)
+* 🧱 Modular & scalable architecture
+
+---
+
+## 🧠 ML Pipeline Architecture
+
+```mermaid
+flowchart LR
+A[Raw Input] --> B[Feature Engineering]
+B --> C[Preprocessing]
+C --> D[Model (Random Forest)]
+D --> E[Probability Output]
+E --> F[Risk Classification]
+F --> G[Insights & Recommendation]
+```
+
+### ✨ Feature Engineering
+
+Custom transformer:
+
+* `BalanceDiffTransformer`
+
+Generated features:
+
+* `balanceDiffOrig`
+* `balanceDiffDest`
+
+---
+
+## 📊 Model Performance
+
+| Metric    | Score |
+| --------- | ----- |
+| Accuracy  | 1.00  |
+| Precision | 0.95  |
+| Recall    | 0.83  |
+| F1-score  | 0.89  |
+
+> ⚠️ Fokus utama: **high recall untuk fraud detection**
+
+---
+
+## 🖥️ Streamlit App
+
+### User Flow
+
+1. Input data transaksi
+2. Klik predict
+3. Lihat:
+
+   * Fraud probability
+   * Risk level
+   * Flags
+   * Recommendation
 
 ---
 
@@ -38,10 +87,9 @@ Aplikasi dilengkapi dengan UI interaktif sehingga user dapat langsung melakukan 
 fraud_detection_ML/
 │
 ├── app/
-│   ├── __init__.py
-│   ├── predictor.py        # Logic inference
-│   ├── config.py           # Konfigurasi & constants
-│   └── streamlit_app.py    # UI aplikasi
+│   ├── predictor.py        # Inference logic
+│   ├── config.py           # Constants & configs
+│   └── streamlit_app.py    # UI
 │
 ├── model/
 │   └── fraud_detection_pipeline.pkl
@@ -50,7 +98,8 @@ fraud_detection_ML/
 │   └── transformer.py      # Feature engineering
 │
 ├── tests/
-│   └── test_predictor.py   # Automated testing
+│   ├── conftest.py         # Shared test fixtures
+│   └── test_predictor.py
 │
 ├── requirements.txt
 └── README.md
@@ -61,29 +110,27 @@ fraud_detection_ML/
 ## ⚙️ Tech Stack
 
 * Python 3.12
-* Scikit-learn
-* Pandas
-* Streamlit
-* Pytest
+* pandas==2.3.3
+* numpy==2.3.5
+* matplotlib==3.10.8
+* seaborn==0.13.2
+* scikit-learn==1.8.0
+* joblib==1.5.2
+* pytest==9.0.2
 
 ---
 
-## ▶️ How to Run
-
-### 1. Clone repository
+## ▶️ Installation
 
 ```bash
 git clone https://github.com/your-username/fraud_detection_ML.git
 cd fraud_detection_ML
-```
-
-### 2. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-### 3. Jalankan aplikasi
+---
+
+## ▶️ Run App
 
 ```bash
 streamlit run app/streamlit_app.py
@@ -93,75 +140,41 @@ streamlit run app/streamlit_app.py
 
 ## 🧪 Testing
 
-Project ini menggunakan automated testing untuk memastikan sistem berjalan dengan baik.
-
-Jalankan test dengan:
-
 ```bash
 pytest -v
 ```
 
-Testing mencakup:
+### ✔️ Coverage
 
-* Validasi output model
-* Konsistensi hasil prediksi
+* Prediction validity
 * Edge case handling
-* Deteksi flags
+* Feature consistency
+* Rule-based flag validation
 
 ---
 
 ## 📊 Dataset
 
-Dataset yang digunakan berasal dari Kaggle:
-
-👉 https://www.kaggle.com/datasets/amanalisiddiqui/fraud-detection-dataset
-
-Dataset berisi:
-
-* Tipe transaksi
-* Jumlah transaksi
-* Saldo sebelum & sesudah
-* Label fraud (0 = normal, 1 = fraud)
+Kaggle Fraud Dataset:
+[https://www.kaggle.com/datasets/amanalisiddiqui/fraud-detection-dataset](https://www.kaggle.com/datasets/amanalisiddiqui/fraud-detection-dataset)
 
 ---
 
-## 🧠 Model
+## 🚀 Future Improvements
 
-Model yang digunakan:
-
-* Random Forest Classifier
-
-Pipeline mencakup:
-
-* Feature Engineering
-* Preprocessing
-* Classification
-
-Contoh fitur tambahan:
-
-* `balanceDiffOrig`
-* `balanceDiffDest`
+* 📈 Model evaluation dashboard
+* 🎯 Threshold tuning (precision vs recall)
+* ☁️ Cloud deployment (Streamlit / Docker)
+* 🧾 Logging & monitoring system
 
 ---
 
 ## ⚠️ Disclaimer
 
-Hasil prediksi bersifat **probabilistik** dan tidak menggantikan keputusan manusia.
-Selalu lakukan verifikasi manual untuk transaksi dengan nilai tinggi.
-
----
-
-## 📈 Future Improvements
-
-* Dashboard evaluasi model (confusion matrix, precision/recall)
-* Threshold tuning untuk meningkatkan recall fraud
-* Deployment ke cloud (Streamlit Cloud / Docker)
-* Logging & audit trail system
+Predictions are probabilistic and should support — not replace — human decisions.
 
 ---
 
 ## 👨‍💻 Author
 
-Dikembangkan sebagai project portfolio Machine Learning.
-
----
+Machine Learning Portfolio Project 🚀
